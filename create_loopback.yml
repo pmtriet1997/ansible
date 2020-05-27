@@ -6,7 +6,7 @@
     - name: Set loopback IPv4 address
       ios_l3_interface:
         name: loopback {{item.interface}}
-        ipv4: 10.0.0.{{item.ip}}/24
+        ipv4: 10.0.{{item.ip}}.1/24
       with_items:
         - { interface: 1, ip: 1 }
         - { interface: 3, ip: 3 }
