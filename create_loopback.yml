@@ -2,16 +2,11 @@
 - name: Set IP Interface
   hosts: all
 
-  tasks:
-    - name: Convert layer 3
-      ios_config:
-        lines: ip routing
-  
+  tasks:  
     - name: Set Interface IPv4 address
       ios_l3_interface:
         name: Ethernet0/{{item.interface}}
-        ipv4: 192.168.{{item.ip}}.1/24
-        name: no shut
+        ipv4: 192.168.{{item.ip}}.1/24        
       with_items:
         - { interface: 1, ip: 1 }
         - { interface: 2, ip: 2 }
