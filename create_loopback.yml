@@ -1,0 +1,24 @@
+- name: dat ip cho loobpack
+  hosts: all
+
+  tasks:
+    - name: Set loopback IPv4 address
+      ios_l3_interface:
+        name: loopback {{ item.interface }}
+        ipv4: "{{ item.ip }}"
+        state: present
+        with_items:
+        - { interface: 1, ip: "10.0.0.1/24" }
+        - { interface: 3, ip: "10.0.0.3/24" }
+        - { interface: 4, ip: "10.0.0.4/24" }
+        - { interface: 5, ip: "10.0.0.5/24" }
+        - { interface: 6, ip: "10.0.0.6/24" }
+        - { interface: 7, ip: "10.0.0.7/24" }
+
+    - name: Show ip
+      ios_command:
+        commands:
+          - show ip int brief
+      register: show_ip
+
+    - debug: var=show_ip.stdout_lines
