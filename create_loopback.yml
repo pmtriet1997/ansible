@@ -1,17 +1,16 @@
 ---
-- name: dat ip cho loobpack
+- name: Set IP Interface
   hosts: all
 
   tasks:
-    - name: Set loopback IPv4 address
+    - name: Set Interface IPv4 address
       ios_l3_interface:
-        name: loopback {{item.interface}}
-        ipv4: 10.0.{{item.ip}}.1/24
+        name: e0/{{item.interface}}
+        ipv4: 192.168.{{item.ip}}.1/24
       with_items:
         - { interface: 1, ip: 1 }
+        - { interface: 2, ip: 2 }
         - { interface: 3, ip: 3 }
-        - { interface: 4, ip: 4 }
-        - { interface: 5, ip: 5 }
 
     - name: Show ip
       ios_command:
