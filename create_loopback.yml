@@ -7,7 +7,7 @@
         name: loopback {{item.interface}}
         ipv4: 10.0.0.{{item.ip}}/24
         state: present
-        with_items:
+      with_items:
         - { interface: 1, ip: 1 }
         - { interface: 3, ip: 3 }
         - { interface: 4, ip: 4 }
